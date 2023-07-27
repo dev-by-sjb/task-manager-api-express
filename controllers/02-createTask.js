@@ -6,7 +6,7 @@ const createTaskController = async (req, res) => {
 
     const { _id, name, desc, completed, createdAt } = await Task.create(body);
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Task created",
       data: { id: _id, name, desc, completed, createdAt },
