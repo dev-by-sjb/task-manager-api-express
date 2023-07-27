@@ -1,5 +1,5 @@
 import express from "express";
-import getTaskController from "../controllers/01-getTasks.js";
+import getTaskController from "../controllers/01-getAllTasks.js";
 import createTaskController from "../controllers/02-createTask.js";
 import getOneTaskController from "../controllers/03-getOneTask.js";
 
