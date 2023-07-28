@@ -6,10 +6,12 @@ const TaskSchema = new mongoose.Schema({
     required: [true, "Must provide name"],
     trim: true,
     maxLength: [25, "Name can not be more than 25 characters"],
+    // select: false,
   },
   desc: {
     type: String,
     trim: true,
+    minLength: [1, "Desc can not be an empty string"],
     required: [false, "Must provide Desc"],
     default: null,
   },
@@ -21,6 +23,7 @@ const TaskSchema = new mongoose.Schema({
     type: Date,
     immutable: true,
     default: () => Date.now(),
+    select: false,
   },
 });
 

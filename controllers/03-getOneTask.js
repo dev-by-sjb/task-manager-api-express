@@ -1,21 +1,25 @@
 import Task from "../models/task.js";
 
 const getOneTaskController = async (req, res) => {
-  const { id } = req.params;
-
   try {
-    const { _id, name, desc, completed, createdAt } = await Task.findById(id);
+    const { id: taskID } = req.params;
+    const task = await Task.findById(taskID).select("-__v");
+
+    if (!task) {
+      return res.status(404).json({
+        success: false,
+        message: `No Task found with ID: '${taskID}'`,
+      });
+    }
 
     return res.status(200).json({
       success: true,
-      message: `Task with ID of '${id}' has been found`,
-      data: { id: _id, name, desc, completed, createdAt },
+      message: `Task with ID of '${taskID}' found`,
+      data: { task },
     });
   } catch (error) {
     console.log(error.message);
-    res
-      .status(404)
-      .json({ success: false, message: `No Task found with ID: '${id}'` });
+    res.status(500).json({ error });
   }
 };
 

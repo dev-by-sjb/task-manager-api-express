@@ -2,16 +2,16 @@ import Task from "../models/task.js";
 
 const getTaskController = async (req, res) => {
   try {
-    let allTasks = await Task.find();
-    allTasks = allTasks.map(({ _id, name, desc, completed, createdAt }) => {
-      return {
-        id: _id,
-        name,
-        desc,
-        completed,
-        createdAt,
-      };
-    });
+    const allTasks = await Task.find().select("-__v");
+    // allTasks = allTasks.map(({ _id, name, desc, completed, createdAt }) => {
+    //   return {
+    //     id: _id,
+    //     name,
+    //     desc,
+    //     completed,
+    //     createdAt,
+    //   };
+    // });
 
     res.status(200).json({
       success: true,
@@ -20,6 +20,7 @@ const getTaskController = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
+    return res.status(500).json({ success: false, message: error.message });
   }
 };
 
