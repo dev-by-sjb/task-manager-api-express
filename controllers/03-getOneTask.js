@@ -10,17 +10,12 @@ const getOneTaskController = async (req, res) => {
     //if no task is found with taskID
     if (!task) {
       return res.status(404).json({
-        success: false,
         message: `No Task found with ID: '${taskID}'`,
       });
     }
 
     //if task has been found
-    return res.status(200).json({
-      success: true,
-      message: `Task with ID of '${taskID}' found`,
-      data: { task },
-    });
+    return res.status(200).json(task);
   } catch (error) {
     //syntax error with taskID
     res.status(500).json({ error });

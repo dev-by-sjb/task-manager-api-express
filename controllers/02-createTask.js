@@ -4,19 +4,12 @@ const createTaskController = async (req, res) => {
   try {
     const body = req.body;
 
-    const { _id, name, desc, completed, createdAt } = await Task.create(body);
+    const task = await Task.create(body);
 
-    return res.status(201).json({
-      success: true,
-      message: "Task created",
-      data: { id: _id, name, desc, completed, createdAt },
-    });
+    return res.status(201).json(task);
   } catch (error) {
     //syntax error with creation of task
-    return res.status(400).json({
-      success: false,
-      message: error.message,
-    });
+    return res.status(500).json({ message: error });
   }
 };
 

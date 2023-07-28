@@ -8,6 +8,9 @@ import tasks from "./routes/tasks.js";
 const app = express();
 const PORT = process.env.PORT;
 
+//for static files
+// app.use(express.static("./public"));
+
 //main entry route
 app.use("/api/v1/tasks", express.json(), tasks);
 

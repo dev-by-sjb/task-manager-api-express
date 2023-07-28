@@ -13,20 +13,14 @@ const updateOneTaskController = async (req, res) => {
 
     //if no task is found with taskID
     if (!updateOneTask) {
-      return res
-        .status(404)
-        .json({ success: false, message: `No task with ID: ${taskID}` });
+      return res.status(404).json({ message: `No task with ID: ${taskID}` });
     }
 
     //if task has been successfully updated
-    res.status(200).json({
-      success: true,
-      message: `Task with ID:${taskID} has been updated`,
-      data: updateOneTask,
-    });
+    res.status(200).json(updateOneTask);
   } catch (error) {
     //syntax error with taskID
-    res.status(500).json({ success: false, message: error });
+    res.status(500).json({ message: error });
   }
 };
 

@@ -10,21 +10,15 @@ const deleteOneTaskController = async (req, res) => {
     //if no task is found with taskID
     if (!deletedTask) {
       return res.status(404).json({
-        success: false,
         message: `There is no Task with ID: ${taskID}`,
       });
     }
 
     //if task has been deleted
-    return res.status(200).json({
-      success: true,
-      message: `Task with ID: ${taskID} has been deleted`,
-      status: "success",
-      data: null,
-    });
+    return res.status(200).send();
   } catch (error) {
     //syntax error with taskID
-    res.status(500).json({ success: false, message: error });
+    res.status(500).json({ message: error });
   }
 };
 
