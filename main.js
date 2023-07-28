@@ -3,6 +3,7 @@ import express from "express";
 import { connectDB } from "./db/connectDB.js";
 
 //import from routes
+import notFound from "./middleware/not-found.js";
 import tasks from "./routes/tasks.js";
 
 const app = express();
@@ -13,6 +14,9 @@ const PORT = process.env.PORT;
 
 //main entry route
 app.use("/api/v1/tasks", express.json(), tasks);
+
+//not found routes
+app.use(notFound);
 
 const start = async () => {
   try {
