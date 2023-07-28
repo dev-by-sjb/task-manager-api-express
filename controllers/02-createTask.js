@@ -12,7 +12,7 @@ const createTaskController = async (req, res) => {
       data: { id: _id, name, desc, completed, createdAt },
     });
   } catch (error) {
-    console.log(error.message);
+    //syntax error with creation of task
     return res.status(400).json({
       success: false,
       message: error.message,

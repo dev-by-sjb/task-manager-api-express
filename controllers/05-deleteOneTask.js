@@ -4,6 +4,7 @@ const deleteOneTaskController = async (req, res) => {
   try {
     const { id: taskID } = req.params;
 
+    //query database
     const deletedTask = await Task.findByIdAndDelete(taskID);
 
     //if no task is found with taskID
@@ -23,7 +24,6 @@ const deleteOneTaskController = async (req, res) => {
     });
   } catch (error) {
     //syntax error with taskID
-    // console.error(error);
     res.status(500).json({ success: false, message: error });
   }
 };

@@ -8,6 +8,7 @@ import tasks from "./routes/tasks.js";
 const app = express();
 const PORT = process.env.PORT;
 
+//main entry route
 app.use("/api/v1/tasks", express.json(), tasks);
 
 const start = async () => {
