@@ -63,7 +63,7 @@ privateCount();
 privateCount();
 privateCount(); */
 
-const debitAcc = ((amount) => {
+/* const debitAcc = ((amount) => {
   let bankAcc = amount;
 
   console.log(`Initial Bank Balance is: $${bankAcc}`);
@@ -92,4 +92,14 @@ const debitAcc = ((amount) => {
 debitAcc(200);
 debitAcc(342);
 
-// // console.log(bankAcc);
+ */
+
+const func1 = () => {
+  const inner = () => {
+    console.log(x);
+  };
+  let x = 30;
+  return inner;
+};
+
+func1()();
