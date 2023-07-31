@@ -1,13 +1,10 @@
+import { asyncWrapper } from "../middleware/async.js";
 import Task from "../models/task.js";
 
-const getTaskController = async (req, res) => {
-  try {
-    const allTasks = await Task.find().select("-__v");
+const getTaskController = asyncWrapper(async (req, res) => {
+  const allTasks = await Task.find().select("-__v");
 
-    res.status(200).json(allTasks);
-  } catch (error) {
-    return res.status(500).json({ message: error });
-  }
-};
+  res.status(200).json(allTasks);
+});
 
 export default getTaskController;
