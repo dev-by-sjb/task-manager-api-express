@@ -1,16 +1,12 @@
+import { asyncWrapper } from "../middleware/async.js";
 import Task from "../models/task.js";
 
-const createTaskController = async (req, res) => {
-  try {
-    const body = req.body;
+const createTaskController = asyncWrapper(async (req, res) => {
+  const body = req.body;
 
-    const task = await Task.create(body);
+  const task = await Task.create(body);
 
-    return res.status(201).json(task);
-  } catch (error) {
-    //syntax error with creation of task
-    return res.status(500).json({ message: error });
-  }
-};
+  return res.status(201).json(task);
+});
 
 export default createTaskController;
