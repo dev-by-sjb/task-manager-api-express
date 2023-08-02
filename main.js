@@ -3,6 +3,7 @@ import express from "express";
 import { connectDB } from "./db/connectDB.js";
 
 //import from routes
+import errorHandler from "./middleware/error-handler-middleware.js";
 import notFound from "./middleware/not-found.js";
 import tasks from "./routes/tasks.js";
 
@@ -18,10 +19,13 @@ app.use("/api/v1/tasks", express.json(), tasks);
 //not found routes
 app.use(notFound);
 
+//error handler
+app.use(errorHandler);
+
 const start = async () => {
   try {
     await connectDB(process.env.URI);
-    console.log("DB connection is active....\n");
+    console.log("\n\nDB connection is active....\n");
     app.listen(PORT, () => {
       console.log(`Server is listening on port: ${PORT}.....`);
     });

@@ -1,4 +1,4 @@
-import { asyncWrapper } from "../middleware/async.js";
+import { asyncWrapper } from "../middleware/async-wrapper-middleware.js";
 import Task from "../models/task.js";
 
 const deleteOneTaskController = asyncWrapper(async (req, res) => {
@@ -15,7 +15,9 @@ const deleteOneTaskController = asyncWrapper(async (req, res) => {
   }
 
   //if task has been deleted
-  return res.status(200).send();
+  return res
+    .status(200)
+    .json({ message: `Task with ID: "${taskID}" has been deleted` });
 });
 
 export default deleteOneTaskController;

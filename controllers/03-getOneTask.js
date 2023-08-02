@@ -1,4 +1,4 @@
-import { asyncWrapper } from "../middleware/async.js";
+import { asyncWrapper } from "../middleware/async-wrapper-middleware.js";
 import Task from "../models/task.js";
 
 const getOneTaskController = asyncWrapper(async (req, res) => {
