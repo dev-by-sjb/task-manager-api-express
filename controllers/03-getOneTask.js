@@ -1,7 +1,8 @@
+import { createCustomError } from "../errors/error-class.js";
 import { asyncWrapper } from "../middleware/async-wrapper-middleware.js";
 import Task from "../models/task.js";
 
-const getOneTaskController = asyncWrapper(async (req, res) => {
+const getOneTaskController = asyncWrapper(async (req, res, next) => {
   const { id: taskID } = req.params;
 
   //query database
@@ -9,9 +10,7 @@ const getOneTaskController = asyncWrapper(async (req, res) => {
 
   //if no task is found with taskID
   if (!task) {
-    return res.status(404).json({
-      message: `No Task found with ID: '${taskID}'`,
-    });
+    return next(createCustomError(`No Task found with ID: '${taskID}'`, 404));
   }
 
   //if task has been found
